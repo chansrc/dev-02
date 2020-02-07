@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>ALS-GEOC TEST</title>        
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <script>
+        function searchAddr(addr) {
+            var alsUrl = "https://www.als.ogcio.gov.hk/lookup?q=";
+            $.get(alsUrl+addr, function(data) {
+                var gsInfo = $(data.documentElement).find("SuggestedAddress").find("GeospatialInformation")[0];
+                var lat = $(gsInfo).find("Latitude").text();
+                var lng = $(gsInfo).find("Longitude").text();
+                document.write("<b>"+addr+":</b> "+lat+", "+lng+"<br>");
+            });
+        }
+
+        searchAddr("銀湖天峰第一座");
+        searchAddr("康田苑 裕康閣");
+        searchAddr("筲箕灣道142-146號高望大樓");
+        searchAddr("碩門邨第二期瑞碩樓");
+
+    </script>
+</body>
+</html>
+<head>
